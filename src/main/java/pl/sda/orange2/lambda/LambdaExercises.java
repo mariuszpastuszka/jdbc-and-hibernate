@@ -25,7 +25,8 @@ public class LambdaExercises {
         // () parenthesis - arguments list
         // -> arguments, body separator
         // {} parenthesis - method body
-        BoysDontCry firstLambda = () -> {};
+        BoysDontCry firstLambda = () -> {
+        };
         BoysDontCry secondLambda = () -> System.out.println("Lambda:)");
         secondLambda.silnoreki();
         BoysDontCry thirdLambda = () -> {
