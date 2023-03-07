@@ -14,6 +14,7 @@ public class TestConnection {
                 FROM TEST
                 """;
 
+        ResultSet queryResult = null;
         try {
 //            Connection h2Connection = DriverManager.getConnection(H2Config.DB_URL,
 //                    H2Config.USER,
@@ -30,7 +31,7 @@ public class TestConnection {
 
             // ResultSet contains query result data as simple table
             // we need to iterate over result to got data
-            ResultSet queryResult = queryStatement.executeQuery(query);
+            queryResult = queryStatement.executeQuery(query);
             while (queryResult.next()) {
                 System.out.println("id: " + queryResult.getInt(1));
                 System.out.println("name: " + queryResult.getString(2));
@@ -38,6 +39,17 @@ public class TestConnection {
         } catch (SQLException exc) {
             System.out.println("got exception: " + exc);
             exc.printStackTrace();
+        } finally {
+            System.out.println("Finally I know it :)");
+            if (queryResult != null) {
+                try {
+                    queryResult.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         }
+
+        System.out.println("The end");
     }
 }
